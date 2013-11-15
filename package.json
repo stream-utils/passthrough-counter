@@ -1,0 +1,26 @@
+{
+  "name": "passthrough-counter",
+  "description": "Get the total buffer length of a stream.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Jonathan Ong",
+    "email": "me@jongleberry.com",
+    "url": "http://jongleberry.com",
+    "twitter": "https://twitter.com/jongleberry"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stream-utils/passthrough-counter.git"
+  },
+  "bugs": {
+    "mail": "me@jongleberry.com",
+    "url": "https://github.com/stream-utils/passthrough-counter/issues"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}
