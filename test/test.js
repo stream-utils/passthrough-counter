@@ -2,9 +2,9 @@ var fs = require('fs')
 var path = require('path')
 var assert = require('assert')
 
-var Counter = require('./')
+var Counter = require('..')
 
-var pack = path.join(__dirname, 'package.json')
+var pack = path.join(__dirname, '../package.json')
 var length = fs.statSync(pack).size
 
 describe('Passthrough Counter', function () {
