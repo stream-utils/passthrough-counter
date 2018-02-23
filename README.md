@@ -7,14 +7,15 @@ var Counter = require('passthrough-counter')
 
 var stream = fs.createReadStream('package.json')
 var output = fs.createWriteStream('package.json.gz')
+var counter = new Counter();
 
-Counter.on('progress', function (length) {
+counter.on('progress', function (length) {
   // current chunk length
 });
 
 stream
 .pipe(zlib.createGzip())
-.pipe(Counter)
+.pipe(counter)
 .once('finish', function () {
   console.log('final gzipped length is ' + this.length)
 })
