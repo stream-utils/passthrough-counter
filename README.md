@@ -7,10 +7,15 @@ var Counter = require('passthrough-counter')
 
 var stream = fs.createReadStream('package.json')
 var output = fs.createWriteStream('package.json.gz')
+var counter = new Counter();
+
+counter.on('progress', function (length) {
+  // current chunk length
+});
 
 stream
 .pipe(zlib.createGzip())
-.pipe(Counter)
+.pipe(counter)
 .once('finish', function () {
   console.log('final gzipped length is ' + this.length)
 })
@@ -27,6 +32,10 @@ stream
 
 The total number of bytes pass through the stream.
 You can check this once `finish` is emitted.
+
+### {Event} progress(length)
+
+Event with chunk length emitted each time chunk is received
 
 ## License
 

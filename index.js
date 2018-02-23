@@ -16,5 +16,6 @@ function Counter(options) {
 Counter.prototype._transform = function (chunk, encoding, callback) {
   this.length += chunk.length
   this.push(chunk)
+  this.emit('progress', chunk.length);
   callback()
 }

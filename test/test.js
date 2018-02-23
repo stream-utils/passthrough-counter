@@ -18,4 +18,20 @@ describe('Passthrough Counter', function () {
     })
     .resume()
   })
+
+  it('should have progress', function(done) {
+    var stream = fs.createReadStream(pack)
+    var counter = Counter()
+    var currentLength = 0
+
+    counter.on('progress', function (length) {
+      currentLength += length;
+    })
+
+    stream.pipe(counter)
+    .once('finish', function() {
+      assert.equal(currentLength, length);
+      done();
+    });
+  })
 })
