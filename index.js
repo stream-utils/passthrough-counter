@@ -1,20 +1,19 @@
-var util = require('util')
-var Transform = require('stream').Transform
+const { Transform } = require('node:stream')
 
-util.inherits(Counter, Transform)
+class Counter extends Transform {
+  /**
+   * @param {import('node:stream').TransformOptions=} options
+   */
+  constructor(options) {
+    super(options)
+    this.length = 0
+  }
+
+  _transform(chunk, encoding, callback) {
+    this.length += chunk.length
+    this.push(chunk)
+    callback()
+  }
+}
 
 module.exports = Counter
-
-function Counter(options) {
-  if (!(this instanceof Counter))
-    return new Counter(options)
-
-  Transform.call(this, options)
-  this.length = 0
-}
-
-Counter.prototype._transform = function (chunk, encoding, callback) {
-  this.length += chunk.length
-  this.push(chunk)
-  callback()
-}
