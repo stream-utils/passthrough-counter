@@ -9,19 +9,19 @@ var stream = fs.createReadStream('package.json')
 var output = fs.createWriteStream('package.json.gz')
 
 stream
-.pipe(zlib.createGzip())
-.pipe(Counter)
-.once('finish', function () {
-  console.log('final gzipped length is ' + this.length)
-})
-.pipe(output)
+  .pipe(zlib.createGzip())
+  .pipe(new Counter())
+  .once('finish', function () {
+    console.log('final gzipped length is ' + this.length)
+  })
+  .pipe(output)
 ```
 
 ## API
 
 ### new Counter(`options`)
 
-`new` is optional. `options` is optional and is passed into the `Stream.Transform` constructor.
+`options` is optional and is passed into the `Stream.Transform` constructor.
 
 ### counter.length
 
